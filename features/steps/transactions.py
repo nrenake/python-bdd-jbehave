@@ -8,12 +8,6 @@ def step_impl(context, tcId):
     print('Executing TC - ', tcId)
 
 
-# @given('executing {tcId} and expected test status {testStatus}')
-# def step_impl(context, tcId, testStatus):
-#     context.tcId = tcId
-#     context.testStatus = testStatus
-
-
 @given('user has {currentAccount:g} amount in current account')
 def step_impl(context, currentAccount):
     context.curAmt = currentAccount
