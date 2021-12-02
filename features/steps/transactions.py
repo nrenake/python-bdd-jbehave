@@ -39,10 +39,7 @@ def step_impl(context, transferAmount):
 
 @then('validate balance in current and saving accounts are correct for {testStatus}')
 def step_impl(context, testStatus):
-    print('Actual Status - ', testStatus)
     assert (context.actualStatus == testStatus)
     if testStatus == 'PASS':
-        print('curresavingAcctAfterTransfer - ', context.bam.currentActBalance)
-        print('curr+tra - ', context.curAmt + context.traAmt)
         assert (context.bam.currentActBalance == context.curAmt + context.traAmt)
         assert (context.bam.savingAccountBalance == context.savAmt - context.traAmt)
