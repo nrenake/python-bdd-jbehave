@@ -1,6 +1,6 @@
 from behave import *
 
-from utils.BankAccountManager import BankAccountManager
+from features.utils.BankAccountManager import BankAccountManager
 
 
 @given('Executing {tcId}')
@@ -22,13 +22,11 @@ def step_impl(context, savingsAccount):
 def step_impl(context, transferAmount):
     context.traAmt = transferAmount
     context.actualStatus = 'PASS'
-    if (context.traAmt < 0 or context.traAmt < 0.001):
-        context.actualStatus = 'FAIL'
-    elif context.traAmt > context.savAmt:
+    if (context.traAmt < 0 or context.traAmt < 0.001 or context.traAmt > context.savAmt):
         context.actualStatus = 'FAIL'
     else:
         context.bam = BankAccountManager(context.curAmt, context.savAmt)
-        context.bam.transferAmount(context.traAmt)
+        context.bam.transferAmountFromSavingToAccount(context.traAmt)
 
 
 @then('validate balance in current and saving accounts are correct for {testStatus}')
